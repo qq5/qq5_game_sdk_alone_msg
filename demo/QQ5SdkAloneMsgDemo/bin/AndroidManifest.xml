@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.qq5sdkalonemsg.demo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+    
+    <!-- QQ5sdk required -->
+    <!-- 请求网络 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取设备信息 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- SD读写文件 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 读取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_MMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+	<!-- QQ5sdk required -->
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
+        android:name="com.snowfish.cn.ganga.offline.helper.SFOfflineApplication">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- QQ5sdk required -->
+        <meta-data
+            android:name="QQ5_CHANNEL"
+            android:value="1_1" />
+
+        <activity
+            android:name="com.qq5sdk.standalone.ui.web.SdkWebActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="com.heepay.plugin.activity.WeChatNotityActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+
+        <activity
+            android:name="com.ipaynow.plugin.presenter.PayMethodActivity"
+            android:configChanges="keyboardHidden|navigation|orientation|screenSize"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
+
+        <activity
+            android:name="com.ipaynow.plugin.inner_plugin.wechatwp.activity.WeChatNotifyActivity"
+            android:configChanges="keyboardHidden|navigation|orientation|screenSize"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Dialog" />
+        
+        <activity
+            android:name="com.snowfish.a.a.s.PA"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+
+        <service
+            android:name="com.snowfish.a.a.s.ABGSvc"
+            android:enabled="true"
+            android:process="com.snowfish.a.a.bg">
+            <intent-filter>
+                <action android:name="com.snowfish.a.a.s.ABGSvc" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        <receiver android:permission="android.permission.BROADCAST_SMS"
+            android:exported="true"
+            android:name="com.snowfish.a.a.s.ABFlt"
+            android:process="com.snowfish.a.a.bg"
+            >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="LOCATION_SERVICE" />
+                <action android:name="android.intent.action.SIM_STATE_CHANGED" />
+                <action android:name="android.intent.action.SERVICE_STATE" />
+                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.intent.action.ANY_DATA_STATE" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
+                <action android:name="android.intent.action.MEDIA_EJECT" />
+                <data android:scheme="file"/>
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.snowfish.appid"
+            android:value="{29BB8D85-64C6523C}" >
+        </meta-data>
+        <meta-data
+            android:name="com.snowfish.customer"
+            android:value="snowfish" >
+        </meta-data>
+        <meta-data
+            android:name="com.snowfish.channel"
+            android:value="snowfish" >
+        </meta-data>
+        <meta-data
+            android:name="com.snowfish.sdk.version"
+            android:value="1" >
+        </meta-data>
+        <!-- QQ5sdk required -->
+    </application>
+
+</manifest>
